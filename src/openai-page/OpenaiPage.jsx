@@ -24,7 +24,7 @@ function OpenaiPage() {
 
     try {      
       const response = await axios.post(
-      'https://api.proxyapi.ru/openai/v1',
+      'https://cors-anywhere.herokuapp.com/https://api.proxyapi.ru/openai/v1/images/generations',
       {
         model: "dall-e-3",
         prompt: `${prompt}`,
@@ -37,17 +37,8 @@ function OpenaiPage() {
       }
     );
 
-      console.log(response.data.choices[0].text);
-
-      //const response = await openai.images.generate({
-      //  model: "dall-e-3",
-      //  prompt: `${prompt}}`,
-      //  n: 1,
-      //  size: "1024x1024",
-      //});
-
-      console.log(response.data[0].url);
-      setImageURL(response.data[0].url);
+      console.log(response.data.data[0].url);
+      setImageURL(response.data.data[0].url);
       setPrompt("");
       setLoading(false);
     }
