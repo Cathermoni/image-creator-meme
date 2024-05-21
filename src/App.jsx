@@ -16,8 +16,8 @@ const App = () => {
     <>
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<MainPage />} />
-        <Route exact path='openai' element={<OpenaiPage />} />
+        <Route index element={<MainPage />} />
+        <Route path='/openai' element={<OpenaiPage />} />
       </Routes>
     </BrowserRouter>
     </>
