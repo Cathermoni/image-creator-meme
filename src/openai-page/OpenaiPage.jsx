@@ -52,8 +52,16 @@ function OpenaiPage() {
       setLoading(false);
     }
     catch (error) {
-      const errorMessage = error.response ? `${error.response.status}: ${error.response.data}` : error.message;
-      console.log(errorMessage);
+      if (error.response) {
+        // Сервер ответил статусом, отличным от 2xx
+        console.error('Response error:', error.response.data);
+      } else if (error.request) {
+        // Запрос был сделан, но ответа не было
+        console.error('Request error:', error.request);
+      } else {
+        // Произошла ошибка при настройке запроса
+        console.error('Error:', error.message);
+      }
       setLoading(false);
       setImageURL("https://yt3.googleusercontent.com/8p3T2P_yfG9W-aDnkOdLZ7SIUgpLrBdptqV-oYsOgQfzhubrClJArUt0R8Yls0Fs_usckusS=s900-c-k-c0x00ffffff-no-rj")
     }
