@@ -22,15 +22,12 @@ function OpenaiPage() {
   const generateImage = async () => {
     setLoading(true);
 
-    try {      const response = await axios.post(
-      'https://api.proxyapi.ru/openai/v1/images/generations',
+    try {      
+      const response = await axios.post(
+      'https://api.proxyapi.ru/openai/v1',
       {
         model: "dall-e-3",
         prompt: `${prompt}`,
-        temperature: 0.7,
-        max_tokens: 100,
-        frequency_penalty: 0.0,
-        presence_penalty: 0.0,
       },
       {
         headers: {
@@ -56,7 +53,7 @@ function OpenaiPage() {
     }
     catch (error) {
       const errorMessage = error.response ? `${error.response.status}: ${error.response.data}` : error.message;
-      console.log(error.message);
+      console.log(errorMessage);
       setLoading(false);
       setImageURL("https://yt3.googleusercontent.com/8p3T2P_yfG9W-aDnkOdLZ7SIUgpLrBdptqV-oYsOgQfzhubrClJArUt0R8Yls0Fs_usckusS=s900-c-k-c0x00ffffff-no-rj")
     }
