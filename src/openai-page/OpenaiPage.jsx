@@ -4,13 +4,14 @@ import OpenaiNavbar from './OpenaiNavbar.jsx'
 import OpenaiFooter from './OpenaiFooter.jsx'
 import OpenaiCarousel from './components/OpenaiCarousel.jsx';
 import axios from 'axios';
+import RickAndMortyPic from './RICK_AND_MORTY_PLACEHOLDER.png';
 
 function OpenaiPage() {
   const [prompt, setPrompt] = useState("");
   const [style, setStyle] = useState("I'll choose my own!");
   const [custom, setCustom] = useState("");
   const [loading, setLoading] = useState(false);
-  const [imageURL, setImageURL] = useState("src/openai-page/RICK_AND_MORTY_PLACEHOLDER.png");
+  const [imageURL, setImageURL] = useState(RickAndMortyPic);
 
   const openai = new OpenAI({
     //apiKey: `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`,
@@ -23,11 +24,14 @@ function OpenaiPage() {
     setLoading(true);
 
     try {      
+      // 1 - https://crossorigin.me/
+      // 2 - https://cors-anywhere.herokuapp.com/
+      // 3 - https://corsproxy.io/?
       const response = await axios.post(
-      'https://cors-anywhere.herokuapp.com/https://api.proxyapi.ru/openai/v1/images/generations',
+      'https://corsproxy.io/?https://api.proxyapi.ru/openai/v1/images/generations',
       {
         model: "dall-e-3",
-        prompt: `${prompt}`,
+        prompt: `${prompt} with ${style}`,
       },
       {
         headers: {
