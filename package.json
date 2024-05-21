@@ -2,17 +2,18 @@
   "name": "virtualr",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://Cathermoni.github.io/image-creator-meme/",
+  "homepage": "https://Cathermoni.github.io/image-creator-meme",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
+    "git": "^0.1.5",
     "lucide-react": "^0.344.0",
     "openai": "^4.47.1",
     "react": "^18.2.0",
