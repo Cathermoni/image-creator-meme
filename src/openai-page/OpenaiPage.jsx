@@ -34,7 +34,7 @@ function OpenaiPage() {
       },
       {
         headers: {
-          'Authorization': `Bearer "sk-XRI0xeMVpt3b1r5Mbw17O3ZsglXu3BDS"`,
+          'Authorization': `Bearer sk-XRI0xeMVpt3b1r5Mbw17O3ZsglXu3BDS`,
           'Content-Type': 'application/json',
         }
       }
