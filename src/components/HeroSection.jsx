@@ -7,7 +7,7 @@ const HeroSection = () => {
   let navigate = useNavigate();
 
   const navigateToOpenai = () => {
-    navigate('/openai');
+    navigate('/openai-page');
   };
 
   return (

@@ -1,10 +1,3 @@
-import Navbar from "./components/Navbar";
-import HeroSection from "./components/HeroSection";
-import FeatureSection from "./components/FeatureSection";
-import Workflow from "./components/Workflow";
-import Pricing from "./components/Pricing";
-import Footer from "./components/Footer";
-
 import OpenaiPage from "./openai-page/OpenaiPage";
 import MainPage from "./MainPage";
 
@@ -17,7 +10,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<MainPage />} />
-        <Route path='/openai' element={<OpenaiPage />} />
+        <Route path='/openai-page' element={<OpenaiPage />} />
         <Route path='*' element={<MainPage />} />
       </Routes>
     </BrowserRouter>

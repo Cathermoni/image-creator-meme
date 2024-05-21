@@ -3,6 +3,7 @@ import OpenAI from 'openai';
 import OpenaiNavbar from './OpenaiNavbar.jsx'
 import OpenaiFooter from './OpenaiFooter.jsx'
 import OpenaiCarousel from './components/OpenaiCarousel.jsx';
+import axios from 'axios';
 
 function OpenaiPage() {
   const [prompt, setPrompt] = useState("");
@@ -12,20 +13,42 @@ function OpenaiPage() {
   const [imageURL, setImageURL] = useState("src/openai-page/RICK_AND_MORTY_PLACEHOLDER.png");
 
   const openai = new OpenAI({
-    apiKey: `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`,
+    //apiKey: `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`,
+    baseURL: "https://api.proxyapi.ru/openai/v1/images/generations",
+    apiKey: `sk-XRI0xeMVpt3b1r5Mbw17O3ZsglXu3BDS`,
     dangerouslyAllowBrowser: true
   });
 
   const generateImage = async () => {
     setLoading(true);
 
-    try {
-      const response = await openai.images.generate({
-        model: "dall-e-2",
-        prompt: `${prompt}. In the style of ${style === "I'll choose my own!" ? custom.toLowerCase() : style.toLowerCase()}`,
-        n: 1,
-        size: "1024x1024",
-      });
+    try {      const response = await axios.post(
+      'https://api.proxyapi.ru/openai/v1/images/generations',
+      {
+        model: "dall-e-3",
+        prompt: `${prompt}`,
+        temperature: 0.7,
+        max_tokens: 100,
+        frequency_penalty: 0.0,
+        presence_penalty: 0.0,
+      },
+      {
+        headers: {
+          'Authorization': `Bearer "sk-XRI0xeMVpt3b1r5Mbw17O3ZsglXu3BDS"`,
+          'Content-Type': 'application/json',
+        }
+      }
+    );
+
+      console.log(response.data.choices[0].text);
+
+      //const response = await openai.images.generate({
+      //  model: "dall-e-3",
+      //  prompt: `${prompt}}`,
+      //  n: 1,
+      //  size: "1024x1024",
+      //});
+
       console.log(response.data[0].url);
       setImageURL(response.data[0].url);
       setPrompt("");
@@ -33,7 +56,7 @@ function OpenaiPage() {
     }
     catch (error) {
       const errorMessage = error.response ? `${error.response.status}: ${error.response.data}` : error.message;
-      console.log(errorMessage);
+      console.log(error.message);
       setLoading(false);
       setImageURL("https://yt3.googleusercontent.com/8p3T2P_yfG9W-aDnkOdLZ7SIUgpLrBdptqV-oYsOgQfzhubrClJArUt0R8Yls0Fs_usckusS=s900-c-k-c0x00ffffff-no-rj")
     }
