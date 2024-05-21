@@ -24,12 +24,9 @@ function OpenaiPage() {
     setLoading(true);
 
     try {      
-      // 1 - https://crossorigin.me/ (Не работает)
       // 2 - https://cors-anywhere.herokuapp.com/ (работает но надо подтверждение айпи)
-      // 3 - https://corsproxy.io/? (Не работает без впн)
-      // 4 - https://api.allorigins.win/raw?url=
       const response = await axios.post(
-      'https://api.allorigins.win/raw?url=https://api.proxyapi.ru/openai/v1/images/generations',
+      'https://cors-anywhere.herokuapp.com/https://api.proxyapi.ru/openai/v1/images/generations',
       {
         model: "dall-e-3",
         prompt: `${prompt} with ${style}`,
