@@ -3,6 +3,7 @@ import OpenAI from 'openai';
 import OpenaiNavbar from './OpenaiNavbar.jsx'
 import OpenaiFooter from './OpenaiFooter.jsx'
 import OpenaiCarousel from './components/OpenaiCarousel.jsx';
+import OpenaiModal from './components/OpenaiModal.jsx';
 import axios from 'axios';
 import RickAndMortyPic from './RICK_AND_MORTY_PLACEHOLDER.png';
 
@@ -12,13 +13,7 @@ function OpenaiPage() {
   const [custom, setCustom] = useState("");
   const [loading, setLoading] = useState(false);
   const [imageURL, setImageURL] = useState(RickAndMortyPic);
-
-  const openai = new OpenAI({
-    //apiKey: `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`,
-    baseURL: "https://api.proxyapi.ru/openai/v1/images/generations",
-    apiKey: `sk-XRI0xeMVpt3b1r5Mbw17O3ZsglXu3BDS`,
-    dangerouslyAllowBrowser: true
-  });
+  const [popUp, setPopUp] = useState(false);
 
   const generateImage = async () => {
     setLoading(true);
@@ -130,12 +125,19 @@ function OpenaiPage() {
             </label>
           </div>
             <div className="flex flex-col items-center my-4">
-            <button
+                        <button
               onClick={generateImage}
-              className="inline-flex justify-center items-center w-full max-w-md h-12 p-5 tracking-tight text-xl bg-purple-700 text-white hover:bg-purple-900 border border-purple-700 rounded-lg transition duration-700"
+              className="inline-flex justify-center items-center w-full max-w-md h-12 p-4 mb-4 tracking-tight text-xl bg-purple-700 text-white hover:bg-purple-900 border border-purple-700 rounded-lg transition duration-700"
             >
               Сгенерировать
             </button>
+            <button
+              onClick={() => setPopUp(true)}
+              className="inline-flex justify-center items-center w-full max-w-md h-12 p-4 tracking-tight text-xl bg-red-700 text-white hover:bg-red-900 border border-red-700 rounded-lg transition duration-700"
+            >
+              Предупреждение
+            </button>
+            {popUp && <OpenaiModal setPopUp={setPopUp} />}
             {loading ? (
               <div className="animate-spin inline-block mt-4 size-6 border-[5px] border-current border-t-transparent text-purple-600 rounded-full" role="status" aria-label="loading">
                 <span className="sr-only">Loading...</span>
