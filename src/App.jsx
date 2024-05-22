@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 const App = () => {
   return (
     <>
-    <BrowserRouter>
+    <BrowserRouter basename='/image-creator-meme'>
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/openai-page' element={<OpenaiPage />} />
