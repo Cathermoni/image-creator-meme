@@ -2,19 +2,19 @@ import OpenaiPage from "./openai-page/OpenaiPage";
 import MainPage from "./MainPage";
 
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
 const App = () => {
   return (
     <>
-    <BrowserRouter basename='/image-creator-meme'>
-      <Routes>
-        <Route path='/' element={<MainPage />} />
-        <Route path='/openai-page' element={<OpenaiPage />} />
-        <Route path='*' element={<MainPage />} />
-      </Routes>
-    </BrowserRouter>
+      <HashRouter>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/openai-page" element={<OpenaiPage />} />
+          <Route path="*" element={<MainPage />} />
+        </Routes>
+      </HashRouter>
     </>
   );
 };
